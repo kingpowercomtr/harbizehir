@@ -9,13 +9,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  distDir: '.next',
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.externals = [...(config.externals || []), 'prisma', '@prisma/client'];
-    }
-    return config;
-  }
 };
 
 export default nextConfig;
