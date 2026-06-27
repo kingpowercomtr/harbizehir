@@ -70,7 +70,6 @@ export async function GET(req: NextRequest) {
       });
     }
   } catch {
-    // ip kolonu yoksa boş döndür
     events = { rows: [] };
   }
 

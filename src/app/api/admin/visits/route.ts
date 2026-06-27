@@ -11,16 +11,15 @@ export async function GET(req: NextRequest) {
   const limit = 50;
   const offset = (page - 1) * limit;
 
-  // Her IP için en son ziyaretini al (tekilleştirme) - aynı IP yenileme yapınca tekrar listede çıkmasın
   const [visitsResult, countResult, uniqueIpResult] = await Promise.all([
     db.execute({
       sql: `SELECT v.* FROM "Visit" v
             INNER JOIN (
-              SELECT ip, MAX(createdAt) as maxCreated
+              SELECT ip, MAX("createdAt") as "maxCreated"
               FROM "Visit"
               GROUP BY ip
-            ) latest ON v.ip = latest.ip AND v.createdAt = latest.maxCreated
-            ORDER BY v.createdAt DESC
+            ) latest ON v.ip = latest.ip AND v."createdAt" = latest."maxCreated"
+            ORDER BY v."createdAt" DESC
             LIMIT ? OFFSET ?`,
       args: [limit, offset],
     }),
