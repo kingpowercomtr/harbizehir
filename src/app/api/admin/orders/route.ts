@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
   const args = status ? [status] : [];
 
   if (exportCsv) {
-    const result = await db.execute({ sql: `SELECT * FROM "Order" ${whereClause} ORDER BY createdAt DESC`, args });
+    const result = await db.execute({ sql: `SELECT * FROM "Order" ${whereClause} ORDER BY "createdAt" DESC`, args });
     const orders = result.rows as any[];
 
     const header = ["Sipariş Kodu","Ad Soyad","Telefon","Şehir","İlçe","Adres","Paket","Tutar","Ödeme","Durum","Kargo Firması","Takip Kodu","Tarih"];
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
   }
 
   const [ordersResult, countResult] = await Promise.all([
-    db.execute({ sql: `SELECT * FROM "Order" ${whereClause} ORDER BY createdAt DESC LIMIT ? OFFSET ?`, args: [...args, limit, offset] }),
+    db.execute({ sql: `SELECT * FROM "Order" ${whereClause} ORDER BY "createdAt" DESC LIMIT ? OFFSET ?`, args: [...args, limit, offset] }),
     db.execute({ sql: `SELECT COUNT(*) as count FROM "Order" ${whereClause}`, args }),
   ]);
 

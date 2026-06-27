@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Kullanıcı adı ve şifre gereklidir." }, { status: 400 });
     }
 
-    const result = await db.execute({ sql: `SELECT * FROM AdminUser WHERE username = ?`, args: [username] });
+    const result = await db.execute({ sql: `SELECT * FROM "AdminUser" WHERE username = ?`, args: [username] });
     const admin = result.rows[0] as any;
 
     if (!admin || (admin.password !== hashPassword(password) && admin.password !== password)) {

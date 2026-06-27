@@ -47,7 +47,7 @@ export async function GET() {
       db.execute({ sql: `SELECT COUNT(*) as c FROM "Order" WHERE createdAt >= ? AND status != 'iade'`, args: [startOfMonth] }),
       db.execute({ sql: `SELECT SUM(price) as s FROM "Order" WHERE createdAt >= ? AND createdAt < ? AND status != 'iade'`, args: [startOfLastMonth, startOfMonth] }),
       db.execute({ sql: `SELECT COUNT(*) as c FROM "Order" WHERE createdAt >= ? AND createdAt < ? AND status != 'iade'`, args: [startOfLastMonth, startOfMonth] }),
-      db.execute({ sql: `SELECT COUNT(*) as c FROM Visit`, args: [] }),
+      db.execute({ sql: `SELECT COUNT(*) as c FROM "Visit"`, args: [] }),
       db.execute({ sql: `SELECT status, COUNT(*) as count FROM "Order" GROUP BY status`, args: [] }),
       db.execute({ sql: `SELECT packageType, packageLabel, COUNT(*) as count, SUM(price) as total FROM "Order" GROUP BY packageType ORDER BY count DESC`, args: [] }),
       db.execute({ sql: `SELECT paymentType, COUNT(*) as count FROM "Order" GROUP BY paymentType`, args: [] }),
@@ -55,7 +55,7 @@ export async function GET() {
       db.execute({ sql: `SELECT COUNT(*) as c FROM "Order" WHERE createdAt >= ? AND status != 'iade'`, args: [startOfWeek] }),
       db.execute({ sql: `SELECT COUNT(*) as c FROM "Order" WHERE createdAt >= ? AND createdAt < ? AND status != 'iade'`, args: [startOfPrevWeek, startOfWeek] }),
       db.execute({ sql: `SELECT COUNT(*) as c FROM "Order" WHERE status = 'iade'`, args: [] }),
-      db.execute({ sql: `SELECT code, fullName, packageLabel, price, status, createdAt FROM "Order" ORDER BY createdAt DESC LIMIT 8`, args: [] }),
+      db.execute({ sql: `SELECT code, fullName, packageLabel, price, status, createdAt FROM "Order" ORDER BY "createdAt" DESC LIMIT 8`, args: [] }),
       getTodayVisitorCount(),
     ]);
 

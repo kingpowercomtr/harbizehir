@@ -60,12 +60,12 @@ export async function GET(req: NextRequest) {
   try {
     if (sessionId) {
       events = await db.execute({
-        sql: `SELECT * FROM Event WHERE sessionId = ? ORDER BY createdAt ASC LIMIT 200`,
+        sql: `SELECT * FROM "Event" WHERE "sessionId" = ? ORDER BY "createdAt" ASC LIMIT 200`,
         args: [sessionId],
       });
     } else {
       events = await db.execute({
-        sql: `SELECT * FROM Event WHERE ip = ? ORDER BY createdAt ASC LIMIT 200`,
+        sql: `SELECT * FROM "Event" WHERE ip = ? ORDER BY "createdAt" ASC LIMIT 200`,
         args: [ip],
       });
     }

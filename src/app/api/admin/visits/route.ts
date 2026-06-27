@@ -14,18 +14,18 @@ export async function GET(req: NextRequest) {
   // Her IP için en son ziyaretini al (tekilleştirme) - aynı IP yenileme yapınca tekrar listede çıkmasın
   const [visitsResult, countResult, uniqueIpResult] = await Promise.all([
     db.execute({
-      sql: `SELECT v.* FROM Visit v
+      sql: `SELECT v.* FROM "Visit" v
             INNER JOIN (
               SELECT ip, MAX(createdAt) as maxCreated
-              FROM Visit
+              FROM "Visit"
               GROUP BY ip
             ) latest ON v.ip = latest.ip AND v.createdAt = latest.maxCreated
             ORDER BY v.createdAt DESC
             LIMIT ? OFFSET ?`,
       args: [limit, offset],
     }),
-    db.execute({ sql: `SELECT COUNT(DISTINCT ip) as count FROM Visit`, args: [] }),
-    db.execute({ sql: `SELECT COUNT(DISTINCT ip) as count FROM Visit`, args: [] }),
+    db.execute({ sql: `SELECT COUNT(DISTINCT ip) as count FROM "Visit"`, args: [] }),
+    db.execute({ sql: `SELECT COUNT(DISTINCT ip) as count FROM "Visit"`, args: [] }),
   ]);
 
   return NextResponse.json({
