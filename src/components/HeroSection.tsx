@@ -54,7 +54,7 @@ export default function HeroSection({ onOrder }: HeroSectionProps) {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-violet-500">
               Epimedyumlu Stick
             </span>{" "}
-            — Doğanın Gücünü Hissed
+            — Doğanın Gücünü Hisset
           </h1>
 
           <p className="text-lg text-gray-400 max-w-lg mx-auto md:mx-0 leading-relaxed">
@@ -178,7 +178,7 @@ export default function HeroSection({ onOrder }: HeroSectionProps) {
           {/* Değiştirmek için: public/ klasörüne yeni görsel ekle ve aşağıdaki src'yi güncelle */}
           <div className="relative h-[480px] w-full rounded-3xl overflow-hidden border border-purple-500/20 shadow-2xl shadow-purple-500/10">
             <Image
-              src="/harbizehir-sachets-nobg.png"
+              src="/harbizehir-hero.png"
               alt="Harbizehir — Epimedyumlu Stick"
               fill
               className="object-contain p-4"

@@ -16,7 +16,7 @@ export const PACKAGES: PackageOption[] = [
     label: "12 Adet Stick",
     shortLabel: "12 Stick",
     units: 12,
-    price: 699,
+    price: 649,
     origPrice: 899,
     packageLabel: "12 Adet Stick Harbizehir",
   },
